@@ -5,6 +5,7 @@
 ;; Created: Fri Jun 28 14:27:32 2013
 ;; Version: 0.1.0
 
+;;; Commentary:
 ;;; Installation:
 ;; Put this file where you defined your `load-path` directory or just
 ;; add the following line to your emacs config file:
@@ -40,6 +41,7 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Code:
 (require 'helm)
 
 ;;; --------------------------------------------------------------------
@@ -57,14 +59,14 @@
 
 (defvar helm-c-source-git-grep
   '((name . "Helm Git Grep")
-    (candidates . helm-git-grep-init)
+    (candidates-process . helm-git-grep-init)
     (requires-pattern . 1)
     (candidate-number-limit . 9999)
     (action . helm-git-grep-action))
   "Find files matching the current input pattern.")
 
 (defun helm-git-grep-find-repo (dir)
-  "Recursively search for a .git/ directory."
+  "Recursively search for a .git/ DIR."
   (if (string= "/" dir)
       (message "not in a git repo.")
     (if (file-exists-p (expand-file-name ".git/" dir))
@@ -104,6 +106,7 @@
                                        (if (> nlines 0) nlines 0)))
                              'face 'helm-grep-finish))))))))))
 
+(defvar file-full-path)
 (defun helm-git-grep-action (candidate)
   (string-match ":\\([0-9]+\\):" candidate)
   (save-match-data
@@ -139,3 +142,4 @@
    '(helm-c-source-git-grep) *helm-git-grep-buffer-name*))
 
 (provide 'helm-git-grep)
+;;; helm-git-grep.el ends here

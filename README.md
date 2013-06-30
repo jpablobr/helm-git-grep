@@ -29,10 +29,6 @@ You will need to install
 [helm-mode](http://www.emacswiki.org/emacs/Helm). See
 documentation for how to install.
 
-## TODO
- - fix for "Warning (emacs): Candidates function `helm-git-grep-init'
-   should be called in a `candidates-process' attribute".
-
 ## Copyright
 
 Copyright 2013 Jose Pablo Barrantes. MIT Licence, so go for it.
